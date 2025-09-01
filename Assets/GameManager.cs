@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+    CreateWeapon deleteWeapon;
+    EnemyHealth enemyHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +17,17 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void InitializeManager()
+    {
+        enemyHealth.InitializeHealth();
+    }
+
+    public void DeleteManager()
+    {
+        Debug.Log("Delete weapon");
+        deleteWeapon.DeleteWeapon(gameObject);
     }
 
     public void GameOver()

@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 
     public bool isColided = false;
 
-    public CreateWeapon manager;
+    public GameManager deleteManager;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
                         
             enemy.TakeDamageEnemy(damage);
 
-            manager.DeleteWeapon(gameObject);
+            deleteManager.DeleteManager();
 
         }
     }

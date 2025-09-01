@@ -10,9 +10,12 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Enemy;
     public GameObject EnemyHealth;
 
+    public GameManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
+        manager.InitializeManager();
         EnemyHealth enemyHealth = EnemyHealth.GetComponent<EnemyHealth>();
         enemyHealth.InitializeHealth();
     }
