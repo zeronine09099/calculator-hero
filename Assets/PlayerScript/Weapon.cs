@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         rect = GetComponent<RectTransform>();
-        
+
     }
 
     // Update is called once per frame
@@ -32,11 +32,17 @@ public class Weapon : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             var enemy = collision.GetComponentInChildren<EnemyHealth>();
-                        
+
             enemy.TakeDamageEnemy(damage);
 
-            deleteManager.DeleteManager();
+            deleteManager.DeleteManager(gameObject);
+        }
 
+        if (collision.CompareTag("Trash"))
+        {
+            deleteManager.DeleteManager(gameObject);
         }
     }
+
+    
 }

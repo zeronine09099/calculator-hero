@@ -6,16 +6,20 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public GameObject DotPrefab; // 체력 점 
-    public int enemyHealth = 3; // 체력
+    public int initialHealth = 3;
+    public int enemyHealth; // 체력
     public List<GameObject> dots = new List<GameObject>(); //체력 리스트
 
     public RectTransform rect; //체력바 위치
     public Vector2 pos;
+    public float temp = 0;
+
+    public GameManager manager;
 
     // Start is called before the first frame update
     void Start() //체력 UI 적용
     {
-       
+        
     }
 
     public void TakeDamageEnemy(int amount)
@@ -27,6 +31,8 @@ public class EnemyHealth : MonoBehaviour
         {
             if(dots.Count <= 0)
             {
+                pos.x -= 7.5f;
+                rect.anchoredPosition = pos;
                 break;
             }
             int lastIndex = dots.Count - 1;
@@ -38,15 +44,17 @@ public class EnemyHealth : MonoBehaviour
 
         if (enemyHealth <= 0)
         {
-            Destroy(transform.parent.gameObject);
+            manager.EnemyDiedManager(transform.parent.gameObject);
         }
     }
 
     public void InitializeHealth()
     {
+        enemyHealth = initialHealth;
         rect = GetComponent<RectTransform>();
 
         pos = rect.anchoredPosition;
+        temp = pos.x;
         pos.x += 7.5f;
         rect.anchoredPosition = pos;
 
@@ -57,6 +65,8 @@ public class EnemyHealth : MonoBehaviour
             pos.x -= 7.5f;
             rect.anchoredPosition = pos;
         }
+        
+        
     }
     
 

@@ -4,35 +4,38 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
+    public CreateWeapon deleteWeapon;
+    public EnemyHealth enemyHealth;
 
-    CreateWeapon deleteWeapon;
-    EnemyHealth enemyHealth;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+    public EnemySpawner enemySpawner;
+    public GameObject enemy;
+    public GameObject plus;
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
-    public void InitializeManager()
-    {
-        enemyHealth.InitializeHealth();
-    }
-
-    public void DeleteManager()
+    public void DeleteManager(GameObject plus) //무기에서 호출
     {
         Debug.Log("Delete weapon");
-        deleteWeapon.DeleteWeapon(gameObject);
+        deleteWeapon.DeleteWeapon(plus);
     }
 
-    public void GameOver()
+    public void GameOver() //플레이어 체력에서 호출
     {
         Debug.Log("Game Over!");
         Time.timeScale = 0f; // 게임 정지
+    }
+
+    public void InitializeManager(GameObject enemy) //스포너에서 호출
+    { 
+        enemyHealth = enemy.GetComponentInChildren<EnemyHealth>();
+        enemyHealth.InitializeHealth(); //체력 초기화
+    }
+
+    public void EnemyDiedManager(GameObject enemy)
+    {
+        enemySpawner.EnemyDied(enemy);
     }
 }

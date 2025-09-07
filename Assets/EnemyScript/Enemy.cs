@@ -7,11 +7,13 @@ public class NewBehaviourScript : MonoBehaviour
 {
     public float speed = 1f; // 적 속도
     public int damage = 1; // 적 공격력
-
     public float attackInterval = 1.0f; //공격 딜레이 시간
     private float timer = 0f;
-
     private bool isColliding = false;
+
+    
+    public GameObject enemyPrefab;
+   
 
     private PlayerHealth target;
    
