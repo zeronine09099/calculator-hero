@@ -928,6 +928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   createspeed: 0.4
   Plus: {fileID: 541542407}
+  Minus: {fileID: 0}
   poolCount: 20
 --- !u!1 &1233234862
 GameObject:
@@ -1202,6 +1203,7 @@ GameObject:
   - component: {fileID: 1293370414}
   - component: {fileID: 1293370413}
   - component: {fileID: 1293370412}
+  - component: {fileID: 1293370415}
   m_Layer: 0
   m_Name: PlusButton
   m_TagString: Untagged
@@ -1311,6 +1313,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293370410}
   m_CullTransparentMesh: 1
+--- !u!114 &1293370415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293370410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee3ec591a587b44fbe523e61fca5d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 0
+  manager: {fileID: 1410289563}
 --- !u!1 &1410289561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,6 +1376,8 @@ MonoBehaviour:
   enemySpawner: {fileID: 352707319}
   enemy: {fileID: 509572636}
   plus: {fileID: 0}
+  changeWeapon: {fileID: 0}
+  number: 0
 --- !u!1 &1426129447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,6 +1498,7 @@ GameObject:
   - component: {fileID: 1479267364}
   - component: {fileID: 1479267363}
   - component: {fileID: 1479267362}
+  - component: {fileID: 1479267365}
   m_Layer: 0
   m_Name: MinusButton
   m_TagString: Untagged
@@ -1589,6 +1608,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479267360}
   m_CullTransparentMesh: 1
+--- !u!114 &1479267365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479267360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee3ec591a587b44fbe523e61fca5d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 1
+  manager: {fileID: 1410289563}
 --- !u!1 &2046678872
 GameObject:
   m_ObjectHideFlags: 0

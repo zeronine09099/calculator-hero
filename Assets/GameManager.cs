@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public EnemySpawner enemySpawner;
     public GameObject enemy;
     public GameObject plus;
+    public CreateWeapon changeWeapon;
+    public int number;
     
 
     
@@ -37,5 +39,10 @@ public class GameManager : MonoBehaviour
     public void EnemyDiedManager(GameObject enemy)
     {
         enemySpawner.EnemyDied(enemy);
+    }
+
+    public void ChangeWeaponManager(int number)
+    {
+        changeWeapon.ChangeWeapon(number);
     }
 }
