@@ -12,16 +12,13 @@ public class CreateWeapon : MonoBehaviour
     public GameObject Minus;
     public int poolCount = 20;
 
-    private const int PLUS = 0;
-    private const int MINUS = 1;
-    private int weaponInfo = 0;
+    private int weaponNumber = 0;
 
-    List<GameObject> weaponLists = new List<GameObject>();
+    List<GameObject> weaponLists = new List<GameObject>();  
+
     List<Queue<GameObject>> weaponQueues = new List<Queue<GameObject>>();
-    List<GameObject>weapons = new List<GameObject>();
-
     public static Queue <GameObject> pluses = new Queue<GameObject>();
-    public static Queue<GameObject> minuses = new Queue<GameObject>();
+    public static Queue <GameObject> minuses = new Queue<GameObject>();
 
     
 
@@ -43,9 +40,9 @@ public class CreateWeapon : MonoBehaviour
         {
             for (int i = 0; i < poolCount; i++) //몹 생성 초기화
             {
-                weapons[i] = Instantiate(weaponLists[i], transform);
-                weapons[i].SetActive(false);
-                pluses.Enqueue(weapons[i]);
+                GameObject weapon = Instantiate(weaponLists[j], transform);
+                weapon.SetActive(false);
+                weaponQueues[j].Enqueue(weapon);
 
             }
 
@@ -60,9 +57,9 @@ public class CreateWeapon : MonoBehaviour
         {
             if (pluses.Count > 0)
             {
-                GameObject plus = pluses.Dequeue();
-                plus.SetActive(true);
-                plus.transform.localPosition = Vector3.zero;
+                GameObject weapon = weaponQueues[weaponNumber].Dequeue();
+                weapon.SetActive(true);
+                weapon.transform.localPosition = Vector3.zero;
             }
 
             timer = 0f;
@@ -70,16 +67,25 @@ public class CreateWeapon : MonoBehaviour
     }
     
     
-    public void DeleteWeapon(GameObject plus)
+    public void DeleteWeaponPlus(GameObject plus)
     {
         plus.SetActive(false);
         pluses.Enqueue(plus);
         plus.transform.localPosition = Vector3.zero;
     }
 
-    public void ChangeWeapon(int number)
+    public void DeleteWeaponMinus(GameObject minus)
     {
+        minus.SetActive(false);
+        minuses.Enqueue(minus);
+        minus.transform.localPosition = Vector3.zero;
+    }
 
+
+    public void ChangeWeapon(int number)
+    { 
+        weaponNumber = number;
+        Debug.Log(weaponNumber);
     }
     
 }

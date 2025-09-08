@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public RectTransform rect;
-    public float speed = 5f;
-    public float rotateSpeed = 5f;
+   
     public int damage = 1;
 
     public bool isColided = false;
@@ -15,33 +13,38 @@ public class Weapon : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        rect = GetComponent<RectTransform>();
+    {    
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
-        transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") || collision.CompareTag("Trash"))
         {
             var enemy = collision.GetComponentInChildren<EnemyHealth>();
-
-            enemy.TakeDamageEnemy(damage);
-
-            deleteManager.DeleteManager(gameObject);
+            
+            if (collision.CompareTag("Enemy"))
+                {
+                    enemy.TakeDamageEnemy(damage);
+                }
+        
+            switch (gameObject.tag)
+            {
+                case "plus": 
+                    deleteManager.PlusDeleteManager(gameObject);
+                    break;
+                case "minus":
+                    deleteManager.MinusDeleteManager(gameObject);
+                    break;
+            }
         }
 
-        if (collision.CompareTag("Trash"))
-        {
-            deleteManager.DeleteManager(gameObject);
-        }
     }
 
     

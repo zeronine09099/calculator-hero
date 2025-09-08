@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour
 
     public RectTransform rect; //체력바 위치
     public Vector2 pos;
-    public float temp = 0;
+    private float temp = 0;
 
     public GameManager manager;
 
@@ -25,25 +25,47 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamageEnemy(int amount)
     {
         Debug.Log("Enemy health decreased");
+        int repeat;
+        int temp = enemyHealth;
         enemyHealth -= amount;
-
-        for (int i = 0; i < amount; i++)
+        if (amount > dots.Count)
         {
-            if(dots.Count <= 0)
-            {
-                pos.x -= 7.5f;
-                rect.anchoredPosition = pos;
-                break;
-            }
+            repeat = dots.Count;
+        }
+        else
+        {
+            repeat = amount;
+        }
+
+        /* for (int i = 0; i < amount; i++)
+         {
+             if(dots.Count <= 0)
+             {
+                 for(int j = 0; j <= temp; j++)
+                 {
+                     pos.x -= 7.5f;
+                 }
+                 rect.anchoredPosition = pos;
+                 break;
+             }
+            */
+        for (int i = 0; i < repeat; i++)
+        {
             int lastIndex = dots.Count - 1;
             Destroy(dots[lastIndex]);
             dots.RemoveAt(lastIndex);
             pos.x += 7.5f;
             rect.anchoredPosition = pos;
         }
+        
 
         if (enemyHealth <= 0)
         {
+            for(int i = 0; i < 1; i++)
+            {
+                pos.x -= 7.5f;
+                rect.anchoredPosition = pos;
+            }
             manager.EnemyDiedManager(transform.parent.gameObject);
         }
     }

@@ -7,21 +7,29 @@ public class GameManager : MonoBehaviour
     
     public CreateWeapon deleteWeapon;
     public EnemyHealth enemyHealth;
+    public ButtonScript buttonScript;
 
     
     public EnemySpawner enemySpawner;
     public GameObject enemy;
     public GameObject plus;
+    public GameObject minus;
     public CreateWeapon changeWeapon;
     public int number;
     
 
     
 
-    public void DeleteManager(GameObject plus) //무기에서 호출
+    public void PlusDeleteManager(GameObject plus) //무기에서 호출
     {
         Debug.Log("Delete weapon");
-        deleteWeapon.DeleteWeapon(plus);
+        deleteWeapon.DeleteWeaponPlus(plus);
+    }
+
+    public void MinusDeleteManager(GameObject minus) //무기에서 호출
+    {
+        Debug.Log("Delete weapon");
+        deleteWeapon.DeleteWeaponMinus(minus);
     }
 
     public void GameOver() //플레이어 체력에서 호출
@@ -43,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeWeaponManager(int number)
     {
+        Debug.Log("weapon changed");
         changeWeapon.ChangeWeapon(number);
     }
 }
