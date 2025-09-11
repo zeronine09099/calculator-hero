@@ -8,14 +8,17 @@ public class GameManager : MonoBehaviour
     public CreateWeapon deleteWeapon;
     public EnemyHealth enemyHealth;
     public ButtonScript buttonScript;
+    public CreateWeapon createweapon;
+    public Enemy enemyScript;
 
-    
+
     public EnemySpawner enemySpawner;
     public GameObject enemy;
     public GameObject plus;
     public GameObject minus;
     public CreateWeapon changeWeapon;
     public int number;
+    
     
 
     
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void EnemyDiedManager(GameObject enemy)
     {
+        
         enemySpawner.EnemyDied(enemy);
     }
 
@@ -53,5 +57,16 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("weapon changed");
         changeWeapon.ChangeWeapon(number);
+    }
+
+    public void IncreaseDifficultyManager()
+    {
+        createweapon.IncreaseDifficulty();
+        enemySpawner.IncreaseDifficulty();
+    }
+
+    public void SetPoolManager(Queue<GameObject> pool)
+    {
+        enemyScript.SetPool(pool);
     }
 }

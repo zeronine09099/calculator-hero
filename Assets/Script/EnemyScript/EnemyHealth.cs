@@ -14,6 +14,9 @@ public class EnemyHealth : MonoBehaviour
     public Vector2 pos;
     private float temp = 0;
 
+    public int hitByPlus = 1; //플러스에 맞았을 때 변화하는 수치
+    public int hitByMinus = 1; //마이너스에 맞았을 때 변화하는 수치
+
     public GameManager manager;
 
     // Start is called before the first frame update
@@ -22,8 +25,16 @@ public class EnemyHealth : MonoBehaviour
         
     }
 
-    public void TakeDamageEnemy(int amount)
+    public void TakeDamageEnemy(int amount,string tag)
     {
+        switch (tag) {     
+            case "plus":
+                amount *= hitByPlus;
+                break;
+            case "minus":
+                amount *= hitByMinus;
+                break;
+        }
         Debug.Log("Enemy health decreased");
         int repeat;
         int temp = enemyHealth;

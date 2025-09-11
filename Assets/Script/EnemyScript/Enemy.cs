@@ -3,20 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
-public class NewBehaviourScript : MonoBehaviour
+public enum EnemyType
+{
+    pw,
+    mw
+}
+
+public class Enemy : MonoBehaviour
 {
     public float speed = 1f; // 적 속도
     public int damage = 1; // 적 공격력
     public float attackInterval = 1.0f; //공격 딜레이 시간
     private float timer = 0f;
     private bool isColliding = false;
+    public EnemyType enemyType;
 
     
+
+
     public GameObject enemyPrefab;
-   
+
+    private Queue<GameObject> myPool;
 
     private PlayerHealth target;
-   
+
+    public void SetPool(Queue<GameObject> pool)
+    {
+        myPool = pool;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +55,14 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
+    /*public void EnemyDied(GameObject enemy)
+    {
+        Debug.Log("Enemy Died");
+        enemy.SetActive(false);
+        myPool.Enqueue(enemy);
+        
+    }
+    */
 
     private void OnTriggerEnter2D(Collider2D collision) // 충돌 시 이벤트 발생
     {

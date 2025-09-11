@@ -7,6 +7,7 @@ public class CreateWeapon : MonoBehaviour
 {
     public float createspeed = 1.0f;
     private float timer = 0f;
+    public float increaseAmount = 0.99f;
 
     public GameObject Plus;
     public GameObject Minus;
@@ -87,5 +88,11 @@ public class CreateWeapon : MonoBehaviour
         weaponNumber = number;
         Debug.Log(weaponNumber);
     }
-    
+
+    public void IncreaseDifficulty()
+    {
+        createspeed *= increaseAmount;
+    }
+
+
 }

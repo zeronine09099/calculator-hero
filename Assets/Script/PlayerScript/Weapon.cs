@@ -31,7 +31,7 @@ public class Weapon : MonoBehaviour
             
             if (collision.CompareTag("Enemy"))
                 {
-                    enemy.TakeDamageEnemy(damage);
+                    enemy.TakeDamageEnemy(damage,gameObject.tag);
                 }
         
             switch (gameObject.tag)
